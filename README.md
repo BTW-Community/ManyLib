@@ -1,8 +1,5 @@
 # ManyLib for Better Than Wolves Community Edition (3.0.x)
 
-This mod adds a special XP Tome book that allows you to store and retrieve your experience points in Better Than Wolves Community Edition.  
-Perfect for keeping your XP safe or moving it between locations!
-
 ---
 
 ## Features
