@@ -71,7 +71,7 @@ dependencies {
 
 	implementation 'org.apache.httpcomponents:httpclient:4.5.14'
 	implementation files('libs/modmenu-10.1.0-dev.jar')
-	modImplementation files('libs/BetterClient-1.1.6.jar')
+	compileOnly files('libs/BetterClient-1.2.0.jar')
 }
 
 configurations.all {
