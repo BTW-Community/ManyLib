@@ -1,0 +1,9 @@
+accessWidener v2 named
+accessible class net/minecraft/src/SlotCreativeInventory
+accessible field net/minecraft/src/GuiTextField xPos I
+accessible field net/minecraft/src/GuiTextField yPos I
+accessible field net/minecraft/src/GuiTextField width I
+accessible field net/minecraft/src/GuiTextField height I
+accessible field net/minecraft/src/GuiScreen fontRenderer Lnet/minecraft/src/FontRenderer;
+accessible field net/minecraft/src/GuiTextField enableBackgroundDrawing Z
+accessible field net/minecraft/src/GuiTextField fontRenderer Lnet/minecraft/src/FontRenderer;

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "manylib",
+  "version": "${version}",
+  "depends": {
+    "fabricloader": ">=0.18.2",
+    "minecraft": "1.6.4"
+  },
+  "environment": "*",
+  "name": "ManyLib",
+  "description": "A simple fork of MaLiLib to BTW",
+  "authors": [
+    "masa",
+    "Debris",
+    "Xy_Lose",
+    "Inf1nlty"
+  ],
+  "contact": {
+    "homepage": "https://github.com/BTW-Community/ManyLib",
+    "issues": "https://github.com/BTW-Community/ManyLib",
+    "sources": "https://github.com/BTW-Community/ManyLib"
+  },
+  "license": "LGPLv3",
+  "icon": "assets/manylib/textures/gui/icon.png",
+  "entrypoints": {
+    "main": [
+    ],
+    "btw:addon": [
+      "fi.dy.masa.malilib.ManyLibAddon"
+    ],
+    "modmenu": [
+      "fi.dy.masa.malilib.compat.ModMenuImpl"
+    ]
+  },
+  "accessWidener": "manylib.accesswidener",
+  "mixins": [
+    "manylib.mixins.json"
+  ],
+  "custom": {
+  }
+}
