@@ -1,5 +1,7 @@
 package fi.dy.masa.malilib.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import fi.dy.masa.malilib.event.InitializationHandler;
 import fi.dy.masa.malilib.event.InputEventHandler;
 import fi.dy.masa.malilib.event.TickHandler;
@@ -19,11 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
-    @Shadow
-    public WorldClient theWorld;
 
-    @Unique
-    private WorldClient worldBefore;
+    @Shadow public WorldClient theWorld;
+    @Unique private WorldClient worldBefore;
 
     @Inject(method = "startGame", at = @At("RETURN"))
     private void onStartGameComplete(CallbackInfo ci) {
@@ -43,12 +43,11 @@ public abstract class MinecraftMixin {
         ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPre(this.theWorld, worldClientIn, (Minecraft) (Object) this);
     }
 
-    @Inject(method = "loadWorld(Lnet/minecraft/src/WorldClient;Ljava/lang/String;)V", at = @At("RETURN"))
-    private void onLoadWorldPost(WorldClient worldClientIn, String par2Str, CallbackInfo ci) {
-        ((WorldLoadHandler) WorldLoadHandler.getInstance()).onWorldLoadPost(this.worldBefore, worldClientIn, (Minecraft) (Object) this);
-        if (this.worldBefore != null) {
-            this.worldBefore = null;
-        }
+    @WrapOperation(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/KeyBinding;setKeyBindState(IZ)V", ordinal = 1))
+    private void onKeyInput(int i, boolean bl, Operation<Void> original) {
+        boolean cancel = ((InputEventHandler) InputEventHandler.getInputManager()).onKeyInput(i, 0, 0, bl ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE);
+        if (cancel) return;
+        original.call(i, bl);
     }
 
     @Redirect(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/KeyBinding;setKeyBindState(IZ)V", ordinal = 1))
