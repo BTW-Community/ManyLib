@@ -3,7 +3,7 @@ package fi.dy.masa.malilib.config.options;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.config.interfaces.ConfigType;
 import fi.dy.masa.malilib.config.interfaces.IConfigBoolean;
 import fi.dy.masa.malilib.config.interfaces.IConfigToggle;
@@ -72,15 +72,15 @@ public class ConfigToggle extends ConfigHotkey implements IConfigToggle, IConfig
             if (JsonUtils.hasBoolean(obj, "enabled")) {
                 this.status = obj.get("enabled").getAsBoolean();
             } else {
-                ManyLibAddon.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
+                ManyLib.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
             }
             if (JsonUtils.hasObject(obj, "hotkey")) {
                 this.keybind.setValueFromJsonElement(obj.get("hotkey").getAsJsonObject());
             } else {
-                ManyLibAddon.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
+                ManyLib.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
             }
         } catch (Exception e) {
-            ManyLibAddon.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element, e);
+            ManyLib.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element, e);
         }
     }
 

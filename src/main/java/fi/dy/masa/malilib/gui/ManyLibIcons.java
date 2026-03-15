@@ -4,7 +4,7 @@ import fi.dy.masa.malilib.gui.interfaces.IGuiIcon;
 import fi.dy.masa.malilib.render.RenderUtils;
 import net.minecraft.src.ResourceLocation;
 
-import static fi.dy.masa.malilib.ManyLibAddon.RESOURCE_DOMAIN;
+import static fi.dy.masa.malilib.ManyLib.RESOURCE_DOMAIN;
 
 public enum ManyLibIcons implements IGuiIcon {
     ResetButton(0, 100, 20, 20, true),

@@ -1,7 +1,7 @@
 package fi.dy.masa.malilib.util;
 
 import com.google.gson.*;
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -251,7 +251,7 @@ public class JsonUtils {
             try (InputStreamReader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
                 return new JsonParser().parse(reader);
             } catch (Exception e) {
-                ManyLibAddon.logger.error("Failed to parse the JSON file '{}'", fileName, e);
+                ManyLib.logger.error("Failed to parse the JSON file '{}'", fileName, e);
             }
         }
 
@@ -274,12 +274,12 @@ public class JsonUtils {
             writer.close();
 
             if (file.exists() && file.isFile() && file.delete() == false) {
-                ManyLibAddon.logger.warn("Failed to delete file '{}'", file.getAbsolutePath());
+                ManyLib.logger.warn("Failed to delete file '{}'", file.getAbsolutePath());
             }
 
             return fileTmp.renameTo(file);
         } catch (Exception e) {
-            ManyLibAddon.logger.warn("Failed to write JSON data to file '{}'", fileTmp.getAbsolutePath(), e);
+            ManyLib.logger.warn("Failed to write JSON data to file '{}'", fileTmp.getAbsolutePath(), e);
         }
 
         return false;

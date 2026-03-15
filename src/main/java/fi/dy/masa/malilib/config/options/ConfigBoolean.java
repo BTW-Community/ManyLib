@@ -3,7 +3,7 @@ package fi.dy.masa.malilib.config.options;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.config.interfaces.ConfigType;
 import fi.dy.masa.malilib.config.interfaces.IConfigBoolean;
 import fi.dy.masa.malilib.gui.GuiBase;
@@ -98,10 +98,10 @@ public class ConfigBoolean extends ConfigBase<ConfigBoolean> implements IConfigB
             if (JsonUtils.hasBoolean(obj, "value")) {
                 this.value = obj.get("value").getAsBoolean();
             } else {
-                ManyLibAddon.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
+                ManyLib.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
             }
         } catch (Exception e) {
-            ManyLibAddon.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element, e);
+            ManyLib.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element, e);
         }
     }
 

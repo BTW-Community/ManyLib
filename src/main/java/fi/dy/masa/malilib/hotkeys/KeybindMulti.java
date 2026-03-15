@@ -1,6 +1,6 @@
 package fi.dy.masa.malilib.hotkeys;
 
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.ManyLibConfig;
 import fi.dy.masa.malilib.gui.Message;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings.Context;
@@ -162,7 +162,7 @@ public class KeybindMulti implements IKeybind {
         if (cancel && ManyLibConfig.Debug.INPUT_CANCELLATION_DEBUG.getBooleanValue()) {
             String msg = String.format("Cancel requested by callback '%s'", this.callback.getClass().getName());
             InfoUtils.showInGameMessage(Message.MessageType.INFO, msg);
-            ManyLibAddon.logger.info(msg);
+            ManyLib.logger.info(msg);
         }
 
         return cancel;

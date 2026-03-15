@@ -1,6 +1,6 @@
 package fi.dy.masa.malilib.util;
 
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.compat.PinyinHandler;
 import fi.dy.masa.malilib.gui.DrawContext;
 import net.fabricmc.loader.api.FabricLoader;
@@ -276,7 +276,7 @@ public class StringUtils {
                     return true;
                 }
             } catch (Exception e) {
-                ManyLibAddon.logger.warn("PinyinHandler: failed to match input");
+                ManyLib.logger.warn("PinyinHandler: failed to match input");
             }
         }
         return false;

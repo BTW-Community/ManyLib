@@ -24,9 +24,10 @@
   "icon": "assets/manylib/textures/gui/icon.png",
   "entrypoints": {
     "main": [
+      "fi.dy.masa.malilib.ManyLib"
     ],
     "btw:addon": [
-      "fi.dy.masa.malilib.ManyLibAddon"
+      "btw.community.malilib.ManyLibAddon"
     ],
     "modmenu": [
       "fi.dy.masa.malilib.compat.ModMenuImpl"

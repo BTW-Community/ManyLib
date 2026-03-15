@@ -1,7 +1,7 @@
 package fi.dy.masa.malilib.compat;
 
 import api.AddonHandler;
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -25,7 +25,7 @@ public class PinyinHandler {
             this.pinInImpl = new PinInImpl();
             this.isValid = true;
         } catch (Exception e) {
-            ManyLibAddon.logger.warn("PinyinHandler: found pinYin mod, but failed to init");
+            ManyLib.logger.warn("PinyinHandler: found pinYin mod, but failed to init");
             e.printStackTrace();
         }
     }

@@ -1,6 +1,6 @@
 package fi.dy.masa.malilib.gui.screen.util;
 
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.ManyLibConfig;
 import fi.dy.masa.malilib.config.interfaces.ConfigType;
 import fi.dy.masa.malilib.config.interfaces.IConfigDisplay;
@@ -105,7 +105,7 @@ public abstract class ConfigItem<T extends ConfigBase<?> & IConfigDisplay> exten
             case TOGGLE -> new ConfigItemToggle(index, (ConfigToggle) config, screen);
             case STRINGLIST -> new ConfigItemStringList(index, (ConfigStringList) config, screen);
             default -> {
-                ManyLibAddon.logger.error("unsupported config type");
+                ManyLib.logger.error("unsupported config type");
                 throw new UnsupportedOperationException();
             }
         };

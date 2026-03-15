@@ -8,6 +8,8 @@ import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.gui.screen.DefaultConfigScreen;
 import fi.dy.masa.malilib.util.JsonUtils;
 import fi.dy.masa.malilib.util.StringUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.src.GuiScreen;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,6 +57,7 @@ public abstract class SimpleConfigs implements IConfigHandler {
         }
     }
 
+    @Environment(EnvType.CLIENT)
     @Override
     public GuiScreen getConfigScreen(GuiScreen parentScreen) {
 //        return new DefaultConfigScreen(parentScreen, this);

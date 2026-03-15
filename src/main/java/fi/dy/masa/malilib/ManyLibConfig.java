@@ -6,12 +6,14 @@ import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.hotkeys.KeybindMulti;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.StringUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.src.EnumChatFormatting;
 import net.minecraft.src.GuiScreen;
 
 import java.util.List;
 
-import static fi.dy.masa.malilib.ManyLibAddon.MOD_NAME;
+import static fi.dy.masa.malilib.ManyLib.MOD_NAME;
 
 public class ManyLibConfig extends SimpleConfigs {
     private static final ManyLibConfig Instance;
@@ -54,6 +56,7 @@ public class ManyLibConfig extends SimpleConfigs {
         return StringUtils.translate("config.menu.comment." + this.name, OpenConfigMenu.getDisplayText());
     }
 
+    @Environment(EnvType.CLIENT)
     @Override
     public GuiScreen getConfigScreen(GuiScreen parentScreen) {
         return new ManyLibConfigScreen(parentScreen, this);

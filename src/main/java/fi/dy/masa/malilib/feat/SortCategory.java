@@ -1,6 +1,6 @@
 package fi.dy.masa.malilib.feat;
 
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.compat.PinyinHandler;
 import fi.dy.masa.malilib.config.options.ConfigBase;
 
@@ -15,7 +15,7 @@ public enum SortCategory {
             try {
                 return instance.compareTheInit(a, b);
             } catch (InvocationTargetException | IllegalAccessException e) {
-                ManyLibAddon.logger.warn("PinyinHandler: failed to compare config names");
+                ManyLib.logger.warn("PinyinHandler: failed to compare config names");
             }
         }
         return Default.stringComparator.compare(a, b);

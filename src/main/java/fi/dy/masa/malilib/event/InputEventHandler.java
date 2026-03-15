@@ -2,11 +2,13 @@ package fi.dy.masa.malilib.event;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import fi.dy.masa.malilib.ManyLibAddon;
+import fi.dy.masa.malilib.ManyLib;
 import fi.dy.masa.malilib.ManyLibConfig;
 import fi.dy.masa.malilib.gui.Message;
 import fi.dy.masa.malilib.hotkeys.*;
 import fi.dy.masa.malilib.util.InfoUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.src.Minecraft;
 
 import java.util.ArrayList;
@@ -14,8 +16,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class InputEventHandler implements IKeybindManager, IInputManager {
+
     private static final InputEventHandler INSTANCE = new InputEventHandler();
-    private final Minecraft mc;
     private final Multimap<Integer, IKeybind> hotkeyMap = ArrayListMultimap.create();
     private final List<KeybindCategory> allKeybinds = new ArrayList<>();
     private final List<IKeybindProvider> keybindProviders = new ArrayList<>();
@@ -24,9 +26,7 @@ public class InputEventHandler implements IKeybindManager, IInputManager {
     private double mouseWheelDeltaSum;
     private boolean texting;
 
-    private InputEventHandler() {
-        this.mc = Minecraft.getMinecraft();
-    }
+    private InputEventHandler() {}
 
     public static IKeybindManager getKeybindManager() {
         return INSTANCE;
@@ -163,28 +163,31 @@ public class InputEventHandler implements IKeybindManager, IInputManager {
         return cancel;
     }
 
+    @Environment(EnvType.CLIENT)
     private void printInputCancellationDebugMessage(Object handler) {
         if (ManyLibConfig.Debug.INPUT_CANCELLATION_DEBUG.getBooleanValue()) {
             String msg = String.format("Cancel requested by input handler '%s'", handler.getClass().getName());
             InfoUtils.showInGameMessage(Message.MessageType.INFO, msg);
-            ManyLibAddon.logger.info(msg);
+            ManyLib.logger.info(msg);
         }
     }
 
     /**
      * NOT PUBLIC API - DO NOT CALL
      */
+    @Environment(EnvType.CLIENT)
     public boolean onMouseScroll(final int mouseX, final int mouseY, final double xOffset, final double yOffset) {
+        Minecraft mc = Minecraft.getMinecraft();
         boolean discrete = false;
-//        boolean discrete = this.mc.options.getDiscreteMouseScroll().getValue();
-        double sensitivity = this.mc.gameSettings.mouseSensitivity;
+//        boolean discrete = mc.options.getDiscreteMouseScroll().getValue();
+        double sensitivity = mc.gameSettings.mouseSensitivity;
         double amount = (discrete ? Math.signum(yOffset) : yOffset) * sensitivity;
 
         if (ManyLibConfig.Debug.MOUSE_SCROLL_DEBUG.getBooleanValue()) {
             int time = (int) (System.currentTimeMillis() & 0xFFFF);
-            int tick = this.mc.theWorld != null ? (int) (this.mc.theWorld.getTotalWorldTime() & 0xFFFF) : 0;
+            int tick = mc.theWorld != null ? (int) (mc.theWorld.getTotalWorldTime() & 0xFFFF) : 0;
             String timeStr = String.format("time: %04X, tick: %04X", time, tick);
-            ManyLibAddon.logger.info("{} - xOffset: {}, yOffset: {}, discrete: {}, sensitivity: {}, amount: {}",
+            ManyLib.logger.info("{} - xOffset: {}, yOffset: {}, discrete: {}, sensitivity: {}, amount: {}",
                     timeStr, xOffset, yOffset, discrete, sensitivity, amount);
         }
 
@@ -214,6 +217,7 @@ public class InputEventHandler implements IKeybindManager, IInputManager {
     /**
      * NOT PUBLIC API - DO NOT CALL
      */
+    @Environment(EnvType.CLIENT)
     public void onMouseMove(final int mouseX, final int mouseY) {
 //        if (this.mouseHandlers.isEmpty() == false) {
 //            for (IMouseInputHandler handler : this.mouseHandlers) {

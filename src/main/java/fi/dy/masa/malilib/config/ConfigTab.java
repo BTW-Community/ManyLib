@@ -5,6 +5,8 @@ import fi.dy.masa.malilib.config.options.ConfigBase;
 import fi.dy.masa.malilib.feat.SortCategory;
 import fi.dy.masa.malilib.gui.screen.util.ConfigItem;
 import fi.dy.masa.malilib.util.StringUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,17 @@ public class ConfigTab {
     public ConfigTab(String unlocalizedName, List<?> allConfigs) {
         this.unlocalizedName = unlocalizedName;
         ImmutableList.Builder<ConfigBase<?>> builder = ImmutableList.builder();
+        boolean isClient = false;
+        try {
+            isClient = FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
+        } catch (Throwable ignored) { }
         for (Object allConfig : allConfigs) {
             ConfigBase<?> config = (ConfigBase<?>) allConfig;
-            if (ConfigItem.supported(config)) builder.add(config);
+            if (isClient) {
+                if (ConfigItem.supported(config)) builder.add(config);
+            } else {
+                builder.add(config);
+            }
         }
         this.allConfigs = builder.build();
         this.searchableConfigs = new ArrayList<>(this.allConfigs);
