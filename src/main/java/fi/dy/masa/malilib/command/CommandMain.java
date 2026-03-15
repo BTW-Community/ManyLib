@@ -2,7 +2,7 @@ package fi.dy.masa.malilib.command;
 
 import net.minecraft.src.CommandBase;
 import net.minecraft.src.ICommandSender;
-import net.minecraft.src.WrongUsageException;
+import net.minecraft.src.ChatMessageComponent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,16 +30,23 @@ public class CommandMain extends CommandBase {
     }
 
     @Override
-    public void processCommand(ICommandSender iCommandSender, String[] strings) {
-        if (strings.length == 0) {
-            throw new WrongUsageException("commands.manyLib.usage");
+    public void processCommand(ICommandSender iCommandSender, String[] strings)
+    {
+        if (strings.length == 0)
+        {
+            iCommandSender.sendChatToPlayer(ChatMessageComponent.createFromTranslationKey("commands.manyLib.usage"));
+            return;
         }
-        if (this.commandMap.containsKey(strings[0])) {
+
+        if (this.commandMap.containsKey(strings[0]))
+        {
             String[] newStrings = new String[strings.length - 1];
             System.arraycopy(strings, 1, newStrings, 0, strings.length - 1);
             this.commandMap.get(strings[0]).processCommand(iCommandSender, newStrings);
-        } else {
-            throw new WrongUsageException("commands.manyLib.usage");
+        }
+        else
+        {
+            iCommandSender.sendChatToPlayer(ChatMessageComponent.createFromTranslationKey("commands.manyLib.usage"));
         }
     }
 
