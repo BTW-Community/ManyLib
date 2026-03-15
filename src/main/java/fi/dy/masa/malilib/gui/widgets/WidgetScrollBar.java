@@ -4,8 +4,11 @@ import fi.dy.masa.malilib.gui.interfaces.IGuiIcon;
 import fi.dy.masa.malilib.render.RenderUtils;
 import net.minecraft.src.MathHelper;
 
+import javax.annotation.Nullable;
+
 public class WidgetScrollBar extends WidgetBase {
 
+    @Nullable
     protected final IGuiIcon barTexture;
     protected boolean mouseOver = false;
     protected boolean dragging = false;
@@ -21,7 +24,7 @@ public class WidgetScrollBar extends WidgetBase {
         this(x, y, width, height, null);
     }
 
-    public WidgetScrollBar(int x, int y, int width, int height, IGuiIcon barTexture) {
+    public WidgetScrollBar(int x, int y, int width, int height, @Nullable IGuiIcon barTexture) {
         super(x, y, width, height);
         this.barTexture = barTexture;
     }

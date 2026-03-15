@@ -9,6 +9,7 @@ import fi.dy.masa.malilib.gui.screen.DefaultConfigScreen;
 import fi.dy.masa.malilib.util.JsonUtils;
 import fi.dy.masa.malilib.util.StringUtils;
 import net.minecraft.src.GuiScreen;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -104,6 +105,7 @@ public abstract class SimpleConfigs implements IConfigHandler {
     }
 
     @Override
+    @Nullable
     public List<ConfigHotkey> getHotkeys() {
         return this.hotkeys;
     }
@@ -128,6 +130,7 @@ public abstract class SimpleConfigs implements IConfigHandler {
     }
 
     @Override
+    @Nullable
     public String getMenuComment() {
         return StringUtils.getTranslatedOrFallback("config.menu.comment." + this.name, this.menuComment);
     }

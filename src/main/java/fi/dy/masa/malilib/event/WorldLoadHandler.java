@@ -7,6 +7,7 @@ import fi.dy.masa.malilib.interfaces.IWorldLoadManager;
 import net.minecraft.src.Minecraft;
 import net.minecraft.src.WorldClient;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class WorldLoadHandler implements IWorldLoadManager {
     /**
      * NOT PUBLIC API - DO NOT CALL
      */
-    public void onWorldLoadPre(WorldClient worldBefore, WorldClient worldAfter, Minecraft mc) {
+    public void onWorldLoadPre(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter, Minecraft mc) {
         if (!this.worldLoadPreHandlers.isEmpty()) {
             for (IWorldLoadListener listener : this.worldLoadPreHandlers) {
                 listener.onWorldLoadPre(worldBefore, worldAfter, mc);
@@ -58,7 +59,7 @@ public class WorldLoadHandler implements IWorldLoadManager {
     /**
      * NOT PUBLIC API - DO NOT CALL
      */
-    public void onWorldLoadPost(WorldClient worldBefore, WorldClient worldAfter, Minecraft mc) {
+    public void onWorldLoadPost(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter, Minecraft mc) {
 //         Save all the configs when exiting a world
         if (worldBefore != null && worldAfter == null) {
             if (ManyLibConfig.AutoSaveLoad.getBooleanValue()) {

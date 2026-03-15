@@ -3,6 +3,8 @@ package fi.dy.masa.malilib.interfaces;
 import net.minecraft.src.Minecraft;
 import net.minecraft.src.WorldClient;
 
+import javax.annotation.Nullable;
+
 public interface IWorldLoadListener {
     /**
      * Called when the client world is going to be changed,
@@ -12,7 +14,7 @@ public interface IWorldLoadListener {
      * @param worldAfter  the new world reference that is going to get assigned
      * @param mc
      */
-    default void onWorldLoadPre(WorldClient worldBefore, WorldClient worldAfter, Minecraft mc) {
+    default void onWorldLoadPre(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter, Minecraft mc) {
     }
 
     /**
@@ -22,6 +24,6 @@ public interface IWorldLoadListener {
      * @param worldAfter  the new world reference that is going to get assigned
      * @param mc
      */
-    default void onWorldLoadPost(WorldClient worldBefore, WorldClient worldAfter, Minecraft mc) {
+    default void onWorldLoadPost(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter, Minecraft mc) {
     }
 }

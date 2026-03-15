@@ -5,7 +5,8 @@ import fi.dy.masa.malilib.gui.Drawable;
 import fi.dy.masa.malilib.gui.Element;
 import fi.dy.masa.malilib.gui.ParentElement;
 import net.minecraft.src.GuiScreen;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

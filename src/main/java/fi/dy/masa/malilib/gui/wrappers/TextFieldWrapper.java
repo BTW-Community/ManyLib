@@ -4,11 +4,13 @@ import fi.dy.masa.malilib.gui.DrawContext;
 import fi.dy.masa.malilib.gui.interfaces.ITextFieldListener;
 import fi.dy.masa.malilib.gui.widgets.WidgetTextField;
 
+import javax.annotation.Nullable;
+
 public class TextFieldWrapper<T extends WidgetTextField> {
     private final T textField;
     private final ITextFieldListener<T> listener;
 
-    public TextFieldWrapper(T textField, ITextFieldListener<T> listener) {
+    public TextFieldWrapper(T textField, @Nullable ITextFieldListener<T> listener) {
         this.textField = textField;
         this.listener = listener;
     }

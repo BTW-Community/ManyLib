@@ -10,6 +10,7 @@ import fi.dy.masa.malilib.util.KeyCodes;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.input.Keyboard;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -27,6 +28,7 @@ public class KeybindMulti implements IKeybind {
     private boolean pressedLast;
     private int heldTime;
 
+    @Nullable
     private IHotkeyCallback callback;
 
     private KeybindMulti(String defaultStorageString, KeybindSettings settings) {
@@ -51,7 +53,7 @@ public class KeybindMulti implements IKeybind {
     }
 
     @Override
-    public void setCallback(IHotkeyCallback callback) {
+    public void setCallback(@Nullable IHotkeyCallback callback) {
         this.callback = callback;
     }
 
@@ -459,6 +461,7 @@ public class KeybindMulti implements IKeybind {
         return "<none>";
     }
 
+    @Nullable
     public static String getStorageStringForKeyCode(int keyCode) {
         return KeyCodes.getNameForKey(keyCode);
     }

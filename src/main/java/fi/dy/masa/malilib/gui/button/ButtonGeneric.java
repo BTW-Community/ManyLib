@@ -6,10 +6,12 @@ import fi.dy.masa.malilib.gui.button.interfaces.IButtonUpdateListener;
 import fi.dy.masa.malilib.gui.interfaces.IGuiIcon;
 import fi.dy.masa.malilib.render.RenderUtils;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ButtonGeneric extends ButtonBase {
 
+    @Nullable
     protected IGuiIcon icon;
     //    protected LeftRight alignment = LeftRight.LEFT;
     protected boolean textCentered = true;
@@ -28,7 +30,7 @@ public class ButtonGeneric extends ButtonBase {
     }
 
     @Override
-    public ButtonGeneric setActionListener(IButtonActionListener actionListener) {
+    public ButtonGeneric setActionListener(@Nullable IButtonActionListener actionListener) {
         this.actionListener = actionListener;
         return this;
     }
@@ -39,7 +41,7 @@ public class ButtonGeneric extends ButtonBase {
     }
 
     @Override
-    public ButtonGeneric setOnUpdate(IButtonUpdateListener updateListener) {
+    public ButtonGeneric setOnUpdate(@Nullable IButtonUpdateListener updateListener) {
         this.updateListener = updateListener;
         return this;
     }

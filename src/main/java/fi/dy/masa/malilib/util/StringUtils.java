@@ -8,6 +8,8 @@ import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.src.I18n;
 import net.minecraft.src.Minecraft;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.net.SocketAddress;
 import java.util.List;
 import java.util.Locale;
@@ -235,7 +237,7 @@ public class StringUtils {
         return str.replace(':', '_');
     }
 
-    public static String getTranslatedOrFallback(String key, String fallback) {
+    public static String getTranslatedOrFallback(String key, @Nullable String fallback) {
         String translated = translate(key);
         if (!key.equals(translated)) {
             return translated;
@@ -263,7 +265,7 @@ public class StringUtils {
         drawContext.drawText(Minecraft.getMinecraft().fontRenderer, text, x, y, color, false);
     }
 
-    public static boolean stringMatchesInput(String string, String input) {
+    public static boolean stringMatchesInput(@Nonnull String string, @Nonnull String input) {
         if (string.toLowerCase().contains(input.toLowerCase())) {
             return true;
         }

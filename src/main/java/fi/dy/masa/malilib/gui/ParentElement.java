@@ -1,10 +1,13 @@
 package fi.dy.masa.malilib.gui;
 
+import javax.annotation.Nullable;
+
 public interface ParentElement extends Element {
 
+    @Nullable
     Element getFocused();
 
-    void setFocused(Element focused);
+    void setFocused(@Nullable Element focused);
 
     @Override
     default void setFocused(boolean focused) {

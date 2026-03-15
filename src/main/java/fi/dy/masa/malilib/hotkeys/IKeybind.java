@@ -7,6 +7,7 @@ import fi.dy.masa.malilib.config.interfaces.IConfigResettable;
 import fi.dy.masa.malilib.config.interfaces.IStringRepresentable;
 import fi.dy.masa.malilib.util.JsonUtils;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IKeybind extends IConfigResettable, IStringRepresentable {
@@ -66,7 +67,7 @@ public interface IKeybind extends IConfigResettable, IStringRepresentable {
 
     List<Integer> getKeys();
 
-    void setCallback(IHotkeyCallback callback);
+    void setCallback(@Nullable IHotkeyCallback callback);
 
     boolean areSettingsModified();
 

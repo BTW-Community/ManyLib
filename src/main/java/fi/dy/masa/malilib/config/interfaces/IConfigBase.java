@@ -2,7 +2,8 @@ package fi.dy.masa.malilib.config.interfaces;
 
 import com.google.gson.JsonElement;
 import fi.dy.masa.malilib.util.StringUtils;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public interface IConfigBase {
     ConfigType getType();

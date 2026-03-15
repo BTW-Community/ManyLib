@@ -17,6 +17,7 @@ import net.minecraft.src.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -419,7 +420,7 @@ public abstract class GuiBase extends ModernScreen implements IMessageConsumer, 
 //        return button;
 //    }
 
-    public <T extends WidgetTextField> TextFieldWrapper<T> addTextField(T textField, ITextFieldListener<T> listener) {
+    public <T extends WidgetTextField> TextFieldWrapper<T> addTextField(T textField, @Nullable ITextFieldListener<T> listener) {
         TextFieldWrapper<T> wrapper = new TextFieldWrapper<>(textField, listener);
         this.textFields.add(wrapper);
         return wrapper;
